@@ -1,0 +1,112 @@
+/* Applique les styles globalement à tous les éléments, y compris les pseudo-éléments before et after */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: hsl(
+    214,
+    20%,
+    85%
+  ); /* Couleur de fond en teinte, saturation, luminosité */
+  display: flex;
+  justify-content: center; /* Centre les éléments enfants horizontalement */
+  align-items: center; /* Centre les éléments enfants verticalement */
+}
+
+/* Style appliqué au conteneur 'div' */
+.wrapper {
+  display: flex;
+  justify-content: center; /* Centre les éléments enfants horizontalement */
+  align-items: center; /* Centre les éléments enfants verticalement */
+  gap: 2rem;
+}
+
+/* Style de base pour les icônes */
+.icon {
+  text-decoration: none;
+  width: 5.625rem;
+  height: 5.625rem;
+  border-radius: 14px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center; /* Centre les éléments enfants horizontalement */
+  align-items: center; /* Centre les éléments enfants verticalement */
+  overflow: hidden; /* Cache la couleur de fond */
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; /* Ombre portée pour un effet 3D */
+}
+
+/* Style pour l'élément enfant i dans .icon */
+.icon > i {
+  color: #2dd4bf;
+  font-size: 1.5rem;
+  transition: all 0.2s; /* Transition fluide pour les changements de style */
+}
+
+/* Style pour l'icône lors du survol */
+.icon:hover > i {
+  scale: 1.2; /* Agrandit l'icône */
+  color: #f1f1f1;
+}
+
+/* Style initial de l'élément before pour l'animation */
+.icon:before {
+  background: var(--color); /* Couleur de fond variable selon l'icône */
+  content: ""; /* Nécessaire pour afficher le pseudo-élément */
+  position: absolute; /* Position absolue par rapport à .icon */
+  width: 130%; /* Largeur plus grande pour l'animation */
+  height: 130%; /* Hauteur plus grande pour l'animation */
+  left: -110%; /* Position initiale à gauche pour l'animation */
+  top: 80%; /* Position initiale en haut pour l'animation */
+  transform: rotate(45deg); /* Rotation initiale pour l'effet diagonal */
+}
+
+/* Animation lors du survol */
+.icon:hover:before {
+  animation: slide 0.7s forwards; /* Applique l'animation nommée 'slide' */
+}
+
+/* Keyframes pour l'animation 'slide' */
+@keyframes slide {
+  50% {
+    left: 10%; /* Position intermédiaire à gauche */
+    top: -40%; /* Position intermédiaire en haut */
+  }
+  100% {
+    left: -15%; /* Position finale à gauche */
+    top: -15%; /* Position finale en haut */
+  }
+}
+
+.icon:has(.fa-instagram) {
+  --color: linear-gradient(
+    45deg,
+    #f9ce34,
+    #ee2a7b,
+    #6228d7
+  ); /* Dégradé pour Instagram */
+}
+
+
+.icon:has(.fa-linkedin-in) {
+  --color: #0077b5;
+}
+
+.icon:has(.fa-youtube) {
+  --color: #ff0000;
+}
+
+.icon:has(.fa-x-twitter) {
+  --color: #1da1f2;
+}
+
+.icon:has(.fa-github) {
+  --color: #333;
+}
