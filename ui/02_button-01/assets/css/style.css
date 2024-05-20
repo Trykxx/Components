@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background-color: #051215;
+  display: grid; /* définit un conteneur en tant que système de grille bidimensionnel, permettant une disposition précise et flexible des éléments enfants en lignes et colonnes. */
+  place-items: center; /* raccourci pour aligner simultanément les éléments enfants à la fois horizontalement et verticalement au centre de leur conteneur de grille*/
+  color: white;
+}
+
+.btn {
+  all: unset; /* réinitialise toutes les propriétés d'un élément à leur valeur héritée ou à leur valeur par défaut, effaçant ainsi tous les styles appliqués précédemment.*/
+  font-size: 18px;
+  padding: 0.8rem 3rem;
+  background-color: #fefefe;
+  color: black;
+  line-height: 1.5; /* définit la hauteur de ligne de l'élément à 1.5 fois la taille de la police actuelle*/
+  font-weight: 600;
+  border: 2px solid white;
+  border-radius: 1000px; /* Valaeur élévé qui garantit que les coins seront completement arrondis*/
+  position: relative;
+  overflow: hidden; /* Pour cacher les parties des pseudo-éléments qui débordent */
+  z-index: 0;
+  cursor: pointer;
+}
+
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  background: #000;
+  background: hsl(191, 80%, 43%);
+  width: 100%;
+  height: 102%;
+  pointer-events: none;
+  transform: skew(30deg) translateY(0); /* combine deux transformations sur un élément : une inclinaison (skew) et une translation verticale (translateY).*/
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.btn::before {
+  --direction: 1;
+  top: -103%;
+  left: -70%;
+}
+
+.btn::after {
+  --direction: -1;
+  top: 102%;
+  left: 69%;
+}
+
+.btn:hover::before,
+.btn:hover::after {
+  transform: skew(30deg) translateY(calc(var(--direction) * 100%)); /*créent un effet de glissement entrant et sortant, translate deplace verticalement et calc() permet de faire des calculs pour déterminer la valeur finale de la propriété*/
+}
+
+.text-container {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.text {
+  display: block;
+  transition: 0.3s;
+}
+
+.btn:hover .text:nth-child(1) {
+  color: white;
+  translate: 0 80%; /* permet de déplacer un élément le long des axes X et Y. Elle est utilisée pour positionner des éléments sans affecter leur flux de mise en page d'origine.*/
+}
+
+.text:nth-child(2) {
+  color: white;
+  position: absolute;
+  inset: 0;
+  translate: 0 -80%;
+}
+
+.btn:hover .text:nth-child(2) {
+  transition-delay: 0.1s;
+  translate: 0 0;
+}

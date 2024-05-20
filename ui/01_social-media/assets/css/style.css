@@ -94,7 +94,6 @@ body {
   ); /* Dégradé pour Instagram */
 }
 
-
 .icon:has(.fa-linkedin-in) {
   --color: #0077b5;
 }
